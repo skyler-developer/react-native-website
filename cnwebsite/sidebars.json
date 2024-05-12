@@ -69,9 +69,8 @@
     "性能调优": [
       "performance",
       "build-speed",
-      "speeding-ci-builds",
       "optimizing-flatlist-configuration",
-      "ram-bundles-inline-requires",
+      "optimizing-javascript-loading",
       "profiling",
       "profile-hermes"
     ],

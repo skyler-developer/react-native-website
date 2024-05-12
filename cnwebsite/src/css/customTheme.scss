@@ -630,7 +630,7 @@ a[class*="tagRegular"] {
     }
   }
 
-  .navbar__items div[class^="searchBox"] {
+  .navbar__items div[class^="navbarSearchContainer"] {
     padding-left: 14px;
   }
 
@@ -1552,9 +1552,7 @@ td .label {
    - to restrict badge only to the next version use "next/PAGEID"
  */
 
-.menu__link[href*="dynamiccolorios"]:after,
-.menu__link[href*="platformcolor"]:after,
-.menu__link[href*="pressable"]:after {
+ .menu__link[href*="NO_NEW_PAGES_CURRENTLY"]:after {
   content: "new";
   display: inline-block;
   position: relative;
