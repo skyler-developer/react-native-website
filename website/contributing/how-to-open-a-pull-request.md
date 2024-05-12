@@ -52,7 +52,13 @@ git checkout --branch my_feature_branch --track origin/main
 
 ### 1. Make changes to the code
 
-You can now make any changes deemed necessary using your code editor of choice. [Visual Studio Code](https://code.visualstudio.com/) is popular with JavaScript developers. If you're mostly making changes to iOS or Android, using Xcode or Android Studio might provide a nicer integrated experience.
+You can now open the project using your code editor of choice. [Visual Studio Code](https://code.visualstudio.com/) is popular with JavaScript developers, and recommended if you are making general changes to React Native.
+
+IDE project configurations:
+
+- **VS Code**: Open the `react-native.code-workspace` file. This should open with extension recommendations, and configure the Flow Language Service and other editor settings correctly.
+- **Android Studio**: Open the repo root folder (containing the `.idea` config directory).
+- **Xcode**: Open `packages/rn-tester/RNTesterPods.xcworkspace`.
 
 ### 2. Test your changes
 
