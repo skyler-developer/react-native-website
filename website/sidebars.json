@@ -13,6 +13,7 @@
     ],
     "Environment setup": [
       "environment-setup",
+      "set-up-your-environment",
       "integration-with-existing-apps",
       "integration-with-android-fragment",
       "building-for-tv",
@@ -62,7 +63,7 @@
     "Debugging": [
       "debugging",
       "react-devtools",
-      "native-debugging",
+      "debugging-native-code",
       "debugging-release-builds",
       "other-debugging-methods"
     ],
