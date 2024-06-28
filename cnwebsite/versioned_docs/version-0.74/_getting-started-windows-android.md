@@ -98,15 +98,12 @@ C:\Users\你的用户名\AppData\Local\Android\Sdk
 
 你需要关闭现有的命令符提示窗口然后重新打开，这样新的环境变量才能生效。
 
-#### 4. 把一些工具目录添加到环境变量 Path
+#### 4. 把工具目录添加到环境变量 Path
 
-打开`控制面板` -> `系统和安全` -> `系统` -> `高级系统设置` -> `高级` -> `环境变量`，选中**Path**变量，然后点击**编辑**。点击**新建**然后把这些工具目录路径添加进去：platform-tools、emulator、tools、tools/bin
+打开`控制面板` -> `系统和安全` -> `系统` -> `高级系统设置` -> `高级` -> `环境变量`，选中**Path**变量，然后点击**编辑**。点击**新建**然后把以下工具目录路径添加进去：platform-tools
 
 ```powershell
 %ANDROID_HOME%\platform-tools
-%ANDROID_HOME%\emulator
-%ANDROID_HOME%\tools
-%ANDROID_HOME%\tools\bin
 ```
 
 ## 创建新项目

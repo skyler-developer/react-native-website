@@ -95,8 +95,6 @@ React Native 需要通过环境变量来了解你的 Android SDK 装在什么路
 ```shell
 # 如果你不是通过Android Studio安装的sdk，则其路径可能不同，请自行确定清楚。
 export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/emulator
 ```

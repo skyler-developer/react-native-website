@@ -3,22 +3,17 @@ id: text
 title: Text
 ---
 
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
-
 一个用于显示文本的 React 组件，并且它也支持嵌套、样式，以及触摸处理。
 
 在下面的例子里，嵌套的标题和正文文字会继承来自`styles.baseText`的`fontFamily`字体样式，不过标题上还附加了它自己额外的样式。标题和文本会在顶部依次堆叠，并且被代码中内嵌的换行符分隔开。
 
-<Tabs groupId="syntax" defaultValue={constants.defaultSyntax} values={constants.syntax}>
-<TabItem value="functional">
-
 ```SnackPlayer name=Text%20Functional%20Component%20Example
-import React, { useState } from "react";
-import { Text, StyleSheet } from "react-native";
+import React, {useState} from 'react';
+import {Text, StyleSheet} from 'react-native';
 
 const TextInANest = () => {
   const [titleText, setTitleText] = useState("Bird's Nest");
-  const bodyText = useState("This is not really a bird nest.");
+  const bodyText = 'This is not really a bird nest.';
 
   const onPressTitle = () => {
     setTitleText("Bird's Nest [pressed]");
@@ -28,8 +23,8 @@ const TextInANest = () => {
     <Text style={styles.baseText}>
       <Text style={styles.titleText} onPress={onPressTitle}>
         {titleText}
-        {"\n"}
-        {"\n"}
+        {'\n'}
+        {'\n'}
       </Text>
       <Text numberOfLines={5}>{bodyText}</Text>
     </Text>
@@ -38,69 +33,16 @@ const TextInANest = () => {
 
 const styles = StyleSheet.create({
   baseText: {
-    fontFamily: "Cochin"
+    fontFamily: 'Cochin',
   },
   titleText: {
     fontSize: 20,
-    fontWeight: "bold"
-  }
+    fontWeight: 'bold',
+  },
 });
 
 export default TextInANest;
 ```
-
-</TabItem>
-<TabItem value="classical">
-
-```SnackPlayer name=Text%20Class%20Component%20Example
-import React, { Component } from "react";
-import { Text, StyleSheet } from "react-native";
-
-class TextInANest extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      titleText: "Bird's Nest",
-      bodyText: "This is not really a bird nest."
-    };
-  }
-
-  onPressTitle = () => {
-    this.setState({ titleText: "Bird's Nest [pressed]" });
-  };
-
-  render() {
-    return (
-      <Text style={styles.baseText}>
-        <Text
-          style={styles.titleText}
-          onPress={this.onPressTitle}
-        >
-          {this.state.titleText}
-          {"\n"}
-          {"\n"}
-        </Text>
-        <Text numberOfLines={5}>{this.state.bodyText}</Text>
-      </Text>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  baseText: {
-    fontFamily: "Cochin"
-  },
-  titleText: {
-    fontSize: 20,
-    fontWeight: "bold"
-  }
-});
-
-export default TextInANest;
-```
-
-</TabItem>
-</Tabs>
 
 ## 嵌套文本
 
@@ -138,29 +80,6 @@ export default BoldAndBeautiful;
 0-9: bold
 9-17: bold, red
 ```
-
-## 嵌套视图（仅限 iOS）
-
-On iOS, you can nest views within your Text component. Here's an example:
-
-```SnackPlayer
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-
-export default class BlueIsCool extends Component {
-  render() {
-    return (
-      <Text>
-        There is a blue square
-        <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
-        in between my text.
-      </Text>
-    );
-  }
-}
-```
-
-> In order to use this feature, you must give the view a `width` and a `height`.
 
 ## 容器
 
@@ -235,7 +154,7 @@ html {
 </View>
 ```
 
-Assuming that `MyAppText` is a component that simply renders out its children into a `Text` component with styling, then `MyAppHeaderText` can be defined as follows:
+假设`MyAppText`是一个组件，它简单地将其子元素渲染到一个带有样式的`Text`组件中，那么可以如下定义`MyAppHeaderText`：
 
 ```jsx
 class MyAppHeaderText extends Component {
@@ -249,7 +168,7 @@ class MyAppHeaderText extends Component {
 }
 ```
 
-Composing `MyAppText` in this way ensures that we get the styles from a top-level component, but leaves us the ability to add / override them in specific use cases.
+以这种方式编写`MyAppText`确保我们能够从顶层组件获取样式，但同时也让我们有能力在特定用例中添加/覆盖它们。
 
 React Native 实际上还是有一部分样式继承的实现，不过仅限于文本标签的子树。在下面的代码里，第二部分会在加粗的同时又显示为红色：
 
@@ -274,7 +193,19 @@ React Native 实际上还是有一部分样式继承的实现，不过仅限于�
 
 ### `accessibilityHint`
 
-An accessibility hint helps users understand what will happen when they perform an action on the accessibility element when that result is not clear from the accessibility label.
+无障碍提示有助于用户理解在执行辅助功能元素上的操作时将会发生什么，尤其当这个结果在辅助功能标签中不明确时。
+
+| Type   |
+| ------ |
+| string |
+
+---
+
+### `accessibilityLanguage` <div class="label ios">iOS</div>
+
+指示当用户与元素交互时屏幕阅读器应该使用哪种语言。它应该遵循[BCP 47 规范](https://www.rfc-editor.org/info/bcp47)。
+
+更多信息请参阅[iOS `accessibilityLanguage`文档](https://developer.apple.com/documentation/objectivec/nsobject/1615192-accessibilitylanguage)。
 
 | Type   |
 | ------ |
@@ -284,7 +215,7 @@ An accessibility hint helps users understand what will happen when they perform 
 
 ### `accessibilityLabel`
 
-Overrides the text that's read by the screen reader when the user interacts with the element. By default, the label is constructed by traversing all the children and accumulating all the `Text` nodes separated by space.
+覆盖当用户与元素交互时屏幕阅读器读取的文本。默认情况下，标签是通过遍历所有子节点并累积所有的`Text`节点（以空格分隔）来构建的。
 
 | Type   |
 | ------ |
@@ -294,11 +225,11 @@ Overrides the text that's read by the screen reader when the user interacts with
 
 ### `accessibilityRole`
 
-Tells the screen reader to treat the currently focused on element as having a specific role.
+告诉屏幕阅读器将当前聚焦的元素视为具有特定角色。
 
-On iOS, these roles map to corresponding Accessibility Traits. Image button has the same functionality as if the trait was set to both 'image' and 'button'. See the [Accessibility guide](accessibility.md#accessibilitytraits-ios) for more information.
+在 iOS 上，这些角色映射到相应的辅助功能特征。图像按钮的功能与将特征设置为“图像”和“按钮”相同。有关更多信息，请查看[辅助功能指南](accessibility.md#accessibilitytraits-ios)。
 
-On Android, these roles have similar functionality on TalkBack as adding Accessibility Traits does on Voiceover in iOS
+在 Android 上，这些角色在 TalkBack 上的类似功能就像在 iOS 的 Voiceover 上添加辅助功能特征一样。
 
 | Type                                                 |
 | ---------------------------------------------------- |
@@ -308,9 +239,9 @@ On Android, these roles have similar functionality on TalkBack as adding Accessi
 
 ### `accessibilityState`
 
-Tells the screen reader to treat the currently focused on element as being in a specific state.
+告诉屏幕阅读器将当前聚焦的元素视为处于特定状态。
 
-You can provide one state, no state, or multiple states. The states must be passed in through an object. Ex: `{selected: true, disabled: true}`.
+您可以提供一个状态，没有状态，或者多个状态。这些状态必须通过一个对象传递进来。例如：`{selected: true, disabled: true}`。
 
 | Type                                                   |
 | ------------------------------------------------------ |
@@ -318,11 +249,35 @@ You can provide one state, no state, or multiple states. The states must be pass
 
 ---
 
+### `accessibilityActions`
+
+无障碍操作允许辅助技术以编程方式调用组件的动作。`accessibilityActions`属性应包含动作对象的列表。每个动作对象都应包含字段名称和标签。
+
+更多信息请参阅[无障碍指南](accessibility.md#accessibility-actions)。
+
+| Type  | Required |
+| ----- | -------- |
+| array | No       |
+
+---
+
+### `onAccessibilityAction`
+
+当用户执行辅助功能操作时调用。此函数唯一的参数是一个包含要执行的操作名称的事件。
+
+有关详细信息，请参阅 [辅助功能指南](accessibility.md#accessibility-actions)。
+
+| Type     | Required |
+| -------- | -------- |
+| function | No       |
+
+---
+
 ### `accessible`
 
-When set to `true`, indicates that the view is an accessibility element.
+当设置为 `true` 时，表示该视图是一个辅助功能元素。
 
-See the [Accessibility guide](accessibility#accessible-ios-android) for more information.
+更多信息请参阅 [辅助功能指南](accessibility#accessible-ios-android)。
 
 | Type    | Default |
 | ------- | ------- |
@@ -334,7 +289,7 @@ See the [Accessibility guide](accessibility#accessible-ios-android) for more inf
 
 指定字体是否随着给定样式的限制而自动缩放。
 
-| Type    | Default |
+| 类型    | 默认值  |
 | ------- | ------- |
 | boolean | `false` |
 
@@ -361,7 +316,7 @@ See the [Accessibility guide](accessibility#accessible-ios-android) for more inf
 - `tail` - 从文本内容尾部截取显示省略号。例如： "abcd..."
 - `clip` - 不显示省略号，直接从尾部截断。
 
-The default is `tail`.
+默认值为 `tail`.
 
 | 类型                                   | 必需 |
 | -------------------------------------- | ---- |
@@ -371,11 +326,11 @@ The default is `tail`.
 
 ### `nativeID`
 
-Used to locate this view from native code.
+用于在原生端定位此视图。
 
-| 类型   | 必需 |
-| ------ | ---- |
-| string | 否   |
+| Type   |
+| ------ |
+| string |
 
 ---
 
@@ -531,61 +486,9 @@ Used to locate this view from native code.
 
 ### `style`
 
-| 类型  | 必需 |
-| ----- | ---- |
-| style | 否   |
-
-- [View Style Props...](view-style-props.md#style)
-
-- **`textShadowOffset`**: object: `{width: number,height: number}`
-
-- **`color`**: [color](colors.md)
-
-- **`fontSize`**: number
-
-- **`fontStyle`**: enum('normal', 'italic')
-
-- **`fontWeight`**: enum('normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900')
-
-  指定字体的粗细。大多数字体都支持'normal'和'bold'值。并非所有字体都支持所有的数字值。如果某个值不支持，则会自动选择最接近的值。
-
-- **`lineHeight`**: number
-
-- **`textAlign`**: enum('auto', 'left', 'right', 'center', 'justify')
-
-  指定文本的对齐方式。其中'justify'值仅 iOS 和 Android>=8.0 支持，在 Android8.0 以下会变为`left`。
-
-- **`textDecorationLine`**: enum('none', 'underline', 'line-through', 'underline line-through')
-
-- **`textShadowColor`**: [color](colors.md)
-
-- **`fontFamily`**: string
-
-- **`textShadowRadius`**: number
-
-- **`includeFontPadding`**: bool (_Android_)
-
-  Android 在默认情况下会为文字额外保留一些 padding，以便留出空间摆放上标或是下标的文字。对于某些字体来说，这些额外的 padding 可能会导致文字难以垂直居中。如果你把`textAlignVertical`设置为`center`之后，文字看起来依然不在正中间，那么可以尝试将本属性设置为`false`。默认值为 true。
-
-* **`textAlignVertical`**: enum('auto', 'top', 'bottom', 'center') (_Android_)
-
-* **`fontVariant`**: array of enum('small-caps', 'oldstyle-nums', 'lining-nums', 'tabular-nums', 'proportional-nums') (_iOS_)
-
-* **`letterSpacing`**: number
-
-Increase or decrease the spacing between characters. The default is 0, for no extra letter spacing.
-
-iOS: The additional space will be rendered after each glyph.
-
-Android: Only supported since Android 5.0 - older versions will ignore this attribute. Please note that additional space will be added _around_ the glyphs (half on each side), which differs from the iOS rendering. It is possible to emulate the iOS rendering by using layout attributes, e.g. negative margins, as appropriate for your situation.
-
-- **`textDecorationColor`**: [color](colors.md) (_iOS_)
-
-- **`textDecorationStyle`**: enum('solid', 'double', 'dotted', 'dashed') (_iOS_)
-
-- **`textTransform`**: enum('none', 'uppercase', 'lowercase', 'capitalize')
-
-- **`writingDirection`**: enum('auto', 'ltr', 'rtl') (_iOS_)
+| Type                                                                 |
+| -------------------------------------------------------------------- |
+| [Text Style](text-style-props), [View Style Props](view-style-props) |
 
 ---
 
@@ -599,23 +502,33 @@ Android: Only supported since Android 5.0 - older versions will ignore this attr
 
 ---
 
-### `selectionColor`
+### `selectionColor` <div class="label android">Android</div>
 
-The highlight color of the text.
+文本的高亮颜色。
 
-| 类型               | 必需 | 平台    |
-| ------------------ | ---- | ------- |
-| [color](colors.md) | 否   | Android |
+| Type            |
+| --------------- |
+| [color](colors) |
 
 ---
 
 ### `textBreakStrategy` <div class="label android">Android</div>
 
-Set text break strategy on Android API Level 23+, possible values are `simple`, `highQuality`, `balanced`.
+在 Android API 级别 23 及以上，设置文本换行策略，可能的值有`simple`、`highQuality`、`balanced`。
 
 | Type                                            | Default       |
 | ----------------------------------------------- | ------------- |
 | enum(`'simple'`, `'highQuality'`, `'balanced'`) | `highQuality` |
+
+---
+
+### `lineBreakStrategyIOS` <div class="label ios">iOS</div>
+
+在 iOS 14+上设置换行策略。可能的值有`none`、`standard`、`hangul-word`和`push-out`。
+
+| Type                                                        | Default  |
+| ----------------------------------------------------------- | -------- |
+| enum(`'none'`, `'standard'`, `'hangul-word'`, `'push-out'`) | `'none'` |
 
 ---
 
@@ -641,7 +554,7 @@ Set text break strategy on Android API Level 23+, possible values are `simple`, 
 
 ### `android_hyphenationFrequency` <div class="label android">Android</div>
 
-Sets the frequency of automatic hyphenation to use when determining word breaks on Android API Level 23+.
+设置在 Android API 级别 23+上确定单词断点时使用的自动连字符频率。
 
 | Type                                | Default  |
 | ----------------------------------- | -------- |
@@ -651,9 +564,9 @@ Sets the frequency of automatic hyphenation to use when determining word breaks 
 
 ### `dataDetectorType` <div class="label android">Android</div>
 
-Determines the types of data converted to clickable URLs in the text element. By default, no data types are detected.
+确定文本元素中转换为可点击 URL 的数据类型。默认情况下，不检测任何数据类型。
 
-You can provide only one type.
+您只能提供一种类型。
 
 | Type                                                          | Default  |
 | ------------------------------------------------------------- | -------- |
@@ -663,7 +576,7 @@ You can provide only one type.
 
 ### `disabled` <div class="label android">Android</div>
 
-Specifies the disabled state of the text view for testing purposes.
+指定文本视图的禁用状态，用于测试目的。
 
 | Type | Default |
 | ---- | ------- |
@@ -671,11 +584,33 @@ Specifies the disabled state of the text view for testing purposes.
 
 ---
 
+### `dynamicTypeRamp` <div class="label ios">iOS</div>
+
+在 iOS 上应用于此元素的[动态类型](https://developer.apple.com/documentation/uikit/uifont/scaling_fonts_automatically)坡度。
+
+| Type                                                                                                                                                     | Default  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| enum(`'caption2'`, `'caption1'`, `'footnote'`, `'subheadline'`, `'callout'`, `'body'`, `'headline'`, `'title3'`, `'title2'`, `'title1'`, `'largeTitle'`) | `'body'` |
+
+---
+
+### `maxFontSizeMultiplier`
+
+指定当`allowFontScaling`启用时，字体可能达到的最大尺寸。可能的值包括：
+
+- `null/undefined`：从父节点或全局默认继承（0）
+- `0`：无最大值，忽略父级/全局默认
+- `>= 1`：将此节点的`maxFontSizeMultiplier`设置为此值
+
+| Type   | Default     |
+| ------ | ----------- |
+| number | `undefined` |
+
 ## 类型定义
 
 ### TextLayout
 
-`TextLayout` object is a part of [`TextLayoutEvent`](text#textlayoutevent) callback and contains the measurement data for `Text` line.
+`TextLayout` 对象是 [`TextLayoutEvent`](text#textlayoutevent) 回调的一部分，包含了 `Text` 行的测量数据。
 
 #### 示例
 
@@ -694,20 +629,20 @@ Specifies the disabled state of the text view for testing purposes.
 
 #### 属性
 
-| Name      | Type   | Optional | Description                                                         |
-| --------- | ------ | -------- | ------------------------------------------------------------------- |
-| ascender  | number | No       | The line ascender height after the text layout changes.             |
-| capHeight | number | No       | Height of capital letter above the baseline.                        |
-| descender | number | No       | The line descender height after the text layout changes.            |
-| height    | number | No       | Height of the line after the text layout changes.                   |
-| width     | number | No       | Width of the line after the text layout changes.                    |
-| x         | number | No       | Line X coordinate inside the Text component.                        |
-| xHeight   | number | No       | Distance between the baseline and median of the line (corpus size). |
-| y         | number | No       | Line Y coordinate inside the Text component.                        |
+| 名称      | 类型   | 可选性 | 描述                                   |
+| --------- | ------ | ------ | -------------------------------------- |
+| ascender  | number | No     | 文本布局变化后的行上升高度。           |
+| capHeight | number | No     | 大写字母基线以上的部分的高度。         |
+| descender | number | No     | 文本布局变化后的行下降高度。           |
+| height    | number | No     | 文本布局变化后的行高。                 |
+| width     | number | No     | 宽度文本布局变化后的线条宽度。         |
+| x         | number | No     | 线条在 Text 组件内的 X 坐标。          |
+| xHeight   | number | No     | 基线与中线之间的距离（小写字母大小）。 |
+| y         | number | No     | 线条在 Text 组件内的 Y 坐标。          |
 
 ### TextLayoutEvent
 
-`TextLayoutEvent` object is returned in the callback as a result of component layout change. It contains a key called `lines` with a value which is an array containing [`TextLayout`](text#textlayout) object corresponeded to every rendered text line.
+`TextLayoutEvent` 对象作为组件布局变化的结果在回调中返回。它包含一个名为 `lines` 的键，其值是一个数组，包含了对应于每一行渲染文本的 [`TextLayout`](text#textlayout) 对象。
 
 #### 示例
 
@@ -724,11 +659,7 @@ Specifies the disabled state of the text view for testing purposes.
 
 #### 属性
 
-| Name   | Type                                    | Optional | Description                                           |
-| ------ | --------------------------------------- | -------- | ----------------------------------------------------- |
-| lines  | array of [TextLayout](text#textlayout)s | No       | Provides the TextLayout data for every rendered line. |
-| target | number                                  | No       | The node id of the element.                           |
-
-## 已知问题
-
-- [react-native#22811](https://github.com/facebook/react-native/issues/22811): Nested Text elements do not support `numberOfLines` attribute
+| 名称   | 类型                              | 可选 | 描述                               |
+| ------ | --------------------------------- | ---- | ---------------------------------- |
+| lines  | [TextLayout](text#textlayout)数组 | 否   | 提供了每行渲染的 TextLayout 数据。 |
+| target | 数字                              | 否   | 元素的节点 ID。                    |
