@@ -1,6 +1,6 @@
 ---
 id: debugging-release-builds
-title: Debugging Release Builds
+title: 调试发行版本
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';

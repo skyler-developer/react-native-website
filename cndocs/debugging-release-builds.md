@@ -1,6 +1,6 @@
 ---
 id: debugging-release-builds
-title: Debugging Release Builds
+title: 调试发行版本
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
@@ -53,7 +53,7 @@ Writing sourcemap output to:, android/app/build/intermediates/sourcemaps/react/r
 <TabItem value="ios">
 
 :::info
-在iOS上，默认情况下禁用源映射。请使用以下说明启用它们。
+在iOS上，默认情况下禁用源映射。请按以下说明启用它们。
 :::
 
 要启用源映射生成：

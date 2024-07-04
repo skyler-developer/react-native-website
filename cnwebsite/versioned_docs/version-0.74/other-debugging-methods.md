@@ -1,6 +1,6 @@
 ---
 id: other-debugging-methods
-title: Other Debugging Methods
+title: 其他调试方法
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
