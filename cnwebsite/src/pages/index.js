@@ -328,7 +328,7 @@ function FastRefresh() {
             autoPlay
             loop
             playsInline
-            src={cdnUrl + `img/homepage/ReactRefresh.mp4`}
+            src={`https://cdn.jsdelivr.net/gh/reactnativecn/react-native-website@master/cnwebsite/static/img/homepage/ReactRefresh.mp4`}
           />
         }
       />
